@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   
+
+    <script src="https://kit.fontawesome.com/c29baa370b.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    
+
+<link rel = "icon" type = "image/png" href = "https://i.imgur.com/yVq33MJ.png">
+    <!-- For apple devices -->
+    <link rel = "apple-touch-icon" type = "image/png" href = "https://i.imgur.com/yVq33MJ.png"/>
+    <title>Eventers</title>
+  </head>
+<body>
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <div class="container">
+                <a href="/" class="navbar-brand"><img style="display: inline" src="https://i.imgur.com/yVq33MJ.png" width="30" height="20"  alt="Brand"> Eventers</a>
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item ">
+                            <li><a href="/campgrounds" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+                    </ul>
+                   </div></div></nav> -->
+
+        <!-- <nav class="navbar navbar-inverse ">
+            
+                <div class="container">
+            
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a href="/" class="navbar-brand"><img style="display: inline" src="https://i.imgur.com/yVq33MJ.png" width="30" height="20"  alt="Brand"> Eventers</a>
+                <ul class="nav navbar-nav ">
+                  <li><a href="/campgrounds" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>    
+                </li>
+              </ul>
+              </div>
+                 <div class="collapse navbar-collapse" id="bs-nav-demo">
+                    
+                  <ul class="nav navbar-nav navbar-right">
+                    <%if(!currentUser){%>
+
+                      <li><a href="/register">Sign Up <i class="fas fa-user-plus"></i></a></li>
+                    <li><a href="/login">Login <i class="fas fa-user"></i></a></li>
+                    <%} else{%>
+                      <li><a href="/bookedevents">Events</a></li>
+                      <li><a href="/profile">Signed In As <%=currentUser.username%></a></li>
+                    <li><a href="/logout">Logout</a></li>	  	
+                    <%}%>
+                  </ul>
+                </div>
+                  </div>
+                
+            </nav> -->
+          <div class="container">
+            <%if(error&&error.length>0){%> 
+            <div class="alert alert-danger" role="alert">
+                <%=error%></div>
+                <%}%>
+                <%if(success&&success.length>0){%>     
+                <div class="alert alert-success" role="alert">
+                  <%=success%></div>
+                  <%}%>
+            </div>          
+     
+      
+ 
+<div class="container">
+        
+          <h1 class="title mb-0">Account Details <a href="/profile/<%=currentUser.username%>/edit" class="btn btn-sm btn-secondary ml-3">Edit</a>
+          </h1>
+          
+       
+        <div class="row">
+          <div class="col-12 col-md-10 col-lg-8 profile">
+                <div class="my-2">
+                    <img src="<%=p.image%>" alt="" width="300px" height="300px">
+                      </div>
+            <div class="my-2">Username:
+              <%= currentUser.username %>
+            </div>
+            <div class="my-2">Email:
+              <%= p.email %>
+            </div>
+            <div class="my-2">
+              Contact:
+              <%= p.contact %>
+            </div>
+            <div class="my-2">
+                    Name:
+                    <%= p.name %>
+                  </div>
+          </div>
+        </div>
+        <a href="/campgrounds"><~Go Back</a>
+        
+    </div>
+      <% include partials/footer %>

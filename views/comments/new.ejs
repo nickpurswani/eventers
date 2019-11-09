@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+<%
+n =  new Date();
+y = n.getFullYear();
+m = n.getMonth() + 1;
+d = n.getDate();
+var x= m + '/' + d + '/' + y;
+%>
+
+<div class="container">
+    <div class="row">
+            <h1 style="text-align: center;">Add New Comment to <%=campground.name%></h1>
+        <div style="width: 30%; margin: 30px auto;">
+            
+            <form action="/campgrounds/<%=campground._id%>/comments" method="POST">
+            
+            <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Text" name="comment[text]">
+            </div>
+            <div class="form-group">
+                        <input class="form-control" type="text" value="<%=x%>" name="comment[date]" readonly>
+                </div>
+            <div class="form-group">
+                    <button class="btn btn-info btn-lg btn-block">submit!</button>
+            </div>
+            
+            </form>
+            <a href="/campgrounds/<%=campground._id%>"><-Go back</a>
+            </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer%>

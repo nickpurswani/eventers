@@ -1,0 +1,21 @@
+.thumbnail img{
+    width: 100%;
+}
+.thumbnail{
+    padding: 0%;
+}
+#delete-form,#delete-form2{
+    display: inline;
+}
+body{background: linear-gradient(90deg, #f4faf5 0%, #d9e7ff 100%);
+    
+}
+.display-3{
+    font-size: 5em;
+}
+#map{
+    height: 400px;
+    width: 100%;
+}
+
+

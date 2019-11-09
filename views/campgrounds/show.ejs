@@ -1,0 +1,141 @@
+    <% include ../partials/header %>
+    
+    
+    <div class="container">
+      
+    <div class="row">
+    <div class="col-md-3">
+    <p class="lead">Eventers</p>
+    <div class="list-group">
+    <li style="padding: 0; border: 0;" class="list-group-item active"><div style="margin-bottom: 5px;" class="panel panel-default">
+        <div class="panel-heading" role="tab" id="questionTwo">
+        <h5 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#faq" href="#answerTwo" aria-expanded="false" aria-controls="answerTwo">
+        Contact
+        </a>
+        </h5>
+        </div>
+        <div id="answerTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="questionTwo">
+        <div style="color: black;" class="panel-body">
+            <%=campground.contact%>
+        </div>
+        </div>
+        </div></li>
+    <li style="padding: 0; border: 0;" class="list-group-item "><div style="margin-bottom: 5px;" class="panel panel-default">
+        <div class="panel-heading" role="tab" id="questionTwo">
+        <h5 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#faq" href="#answer" aria-expanded="false" aria-controls="answerTwo">
+        Address
+        </a>
+        </h5>
+        </div>
+        <div id="answer" class="panel-collapse collapse" role="tabpanel" aria-labelledby="questionTwo">
+        <div class="panel-body">
+        <%=campground.address%>
+        </div>
+        </div>
+        </div>
+    </li>
+    <li style="padding: 0; border: 0;" class="list-group-item "><div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="questionThree">
+        <h5 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#faq" href="#answerThree" aria-expanded="true" aria-controls="answerThree">
+        Timing
+        </a>
+        </h5>
+        </div>
+        <div id="answerThree" class="panel-collapse collapse " role="tabpanel" aria-labelledby="questionThree">
+        <div class="panel-body">
+            <%=campground.timing%>
+        </div>
+        </div>
+        </div>
+    </li>
+    </div>
+    
+        
+        <div id="map"></div>
+    <!-- map -->
+    </div>
+    <div class="col-md-9">
+    <div class="thumbnail">
+    <img class="img-responsive" src="<%= campground.image %>" alt="campground images" >
+    <div class="caption">
+    <h4 class="pull-right">$<%=campground.price%>.00/Entry</h4>
+    
+   
+    
+    <h4><a href="#"><h1><%= campground.name %></h1></a></h4>
+    <p><%= campground.description %></p>
+    <p><em>Submitted By-</em><%=campground.author.username%></p>
+    <p><em>Created On-</em><%=campground.date%></p>
+    <%if(currentUser && campground.author.id.equals(currentUser._id)){%>
+        <a  class="btn btn-warning" href="/campgrounds/<%=campground._id%>/edit">Edit The Event</a>
+<form id="delete-form" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
+<button class="btn btn-danger">Delete</button>
+</form>
+
+<%}%>
+<%if(currentUser){%>
+<a id="reg" style="background-color: gray; color: greenyellow;" class="btn btn-success" href="/campgrounds/<%=currentUser.username%>/<%=campground._id%>/register">Regester</a>
+<%}%>
+</div>
+    </div>
+    <div class="well">
+    <div class="text-right">
+    <a href="/campgrounds/<%=campground._id%>/comments/new" class="btn btn-success">Add New Comment</a>
+    </div>
+    <hr>
+    <%campground.comments.forEach(function(comment){%>
+    <div class="row">
+    <div class="col-md-12">
+    <strong><%= comment.author.username%></strong>
+    <span class="pull-right" ><%=comment.date%></span>
+    <p><%=comment.text%></p>
+    <%if(currentUser && comment.author.id.equals(currentUser._id)){%>
+        <a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit" class="btn btn-xs btn-warning">Edit</a>
+    <form id="delete-form2" action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="post">
+    <input type="submit" value="Delete" class="btn btn-danger btn-xs">
+    </form>
+<%}%>
+    
+</div>
+    </div>
+     <%})%>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script>
+      
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: {lat: -34.397, lng: 150.644},
+          scrollwheel:false
+        });
+        var geocoder = new google.maps.Geocoder();
+          geocodeAddress(geocoder, map);
+      
+      }
+
+      function geocodeAddress(geocoder, resultsMap) {
+        
+        var address = "<%=campground.location%>";
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcjIP2RpW0Lrw9JKFokL7C6tps-_zeb3g&callback=initMap">
+    </script><% include ../partials/footer %>

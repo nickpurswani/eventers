@@ -1,0 +1,13 @@
+<% include partials/header%>
+<div class="container">
+
+<%var i=1%>
+<% book[0].eventid.forEach(function(ids){ %>
+    <a href="/campgrounds/<%=ids%>" class="btn btn-success">Event <%=i%></a>
+    <%i+=1%>
+    <a id="dereg"  style="background-color: gray; color: greenyellow;" class="btn btn-default op" href="/campgrounds/<%=ids%>/<%=currentUser.username%>/deregister">Deregester</a>
+<hr>
+<% }); %>
+</div>
+
+<% include partials/footer%>

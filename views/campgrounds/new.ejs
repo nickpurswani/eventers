@@ -1,0 +1,67 @@
+        <% include ../partials/header %>
+        <%
+                                n =  new Date();
+y = n.getFullYear();
+m = n.getMonth() + 1;
+d = n.getDate();
+var x= m + '/' + d + '/' + y;
+                                %>
+
+        <div class="container">
+        <div class="row">
+        <h1 style="text-align: center;">Create New Events</h1>
+        <div style="width: 30%; margin: 30px auto;">
+
+        <form action="/campgrounds" method="POST" >
+        <div class="form-group">
+        <input class="form-control" type="text" placeholder="name" name="name">
+        </div>
+        <form action="/campgrounds" method="POST" >
+                <div class="form-group">
+                <input class="form-control" type="number" placeholder="Price" name="price" min="1" step="1">
+                </div>
+                <div class="form-group">
+                                <input class="form-control" type="text" value="<%=x%>" name="date" readonly>
+                                </div>
+        <div class="form-group">
+                <%if(link && link.length>0 ){%>
+                        
+  <input class="form-control" type="text" value="<%=link%>" name="image">
+  <%}else{%>            
+        <input class="form-control" type="text" placeholder="image-url" name="image">
+        <%}%>
+        <a href="/index" class="pull-right">Upload</a>
+</div>
+        <div class="form-group">
+
+        <input class="form-control" type="text" name="location" id="location" placeholder="gandhinagar">
+        </div>
+        <div class="form-group">
+
+        <input class="form-control" type="text" name="address" placeholder="address">
+        </div>
+        <div class="form-group">
+
+        <input class="form-control" type="text" name="timing" placeholder="timing for event">
+        </div>
+        <div class="form-group">
+
+        <input class="form-control" type="text" name="contact"  placeholder="contact for event">
+        </div>
+                                        
+
+        <div class="form-group">
+        <input class="form-control" type="text" placeholder="description" name="description">
+        </div>
+        <div class="form-group">
+        <button class="btn btn-info btn-lg btn-block">submit!</button>
+        </div>
+
+        </form>
+        <a href="/campgrounds"><-Go back</a>
+        </div>
+        </div>
+        </div>
+
+
+        <% include ../partials/footer%>
