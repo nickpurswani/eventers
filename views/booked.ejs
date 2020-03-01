@@ -1,13 +1,18 @@
 <% include partials/header%>
 <div class="container">
-
+<h1><%=currentUser.username%> Your Registered Events</h1>
 <%var i=1%>
+<%if(book[0]){%>
 <% book[0].eventid.forEach(function(ids){ %>
     <a href="/campgrounds/<%=ids%>" class="btn btn-success">Event <%=i%></a>
     <%i+=1%>
-    <a id="dereg"  style="background-color: gray; color: greenyellow;" class="btn btn-default op" href="/campgrounds/<%=ids%>/<%=currentUser.username%>/deregister">Deregester</a>
+    <a id="dereg"  style="background-color: gray; color: greenyellow;" class="btn btn-default op" href="/campgrounds/<%=ids%>/<%=currentUser.username%>/deregister">Deregister</a>
 <hr>
 <% }); %>
+<%}%>
+<%if(!book[0]){%>
+    <h1>Please Register Some events</h1>
+    <%}%>
 </div>
 
 <% include partials/footer%>

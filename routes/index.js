@@ -136,13 +136,13 @@
                         }
                         else{
                             
-                            req.flash("success","Regestered");
+                            req.flash("success","Registered");
                      res.redirect('/campgrounds');
                         }
                      });
                     }
                     else{
-                        req.flash("success","Already Regestered Ease Down");
+                        req.flash("success","Already Registered Ease Down");
                         res.redirect('/campgrounds');
                     }
             }
@@ -175,7 +175,7 @@ res.render("booked",{book:newbook});
                         }
                         else{
                             
-                            req.flash("success","DeRegestered");
+                            req.flash("success","DeRegistered");
                      res.redirect('/bookedevents/'+req.params.name);
                         }
                      });

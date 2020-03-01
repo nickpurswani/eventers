@@ -72,7 +72,7 @@ var geocoder = NodeGeocoder(options);
         res.sendFile(__dirname+"/index.html");
     });
     router.post("/index",(req,res)=>{
-        
+       
         res.render("campgrounds/new",{link:req.body.link});
 
     });
@@ -86,7 +86,7 @@ var geocoder = NodeGeocoder(options);
     req.flash("error","Campground not found");
     res.redirect("/campgrounds");
     }else{
-
+console.log(foundCampground);
     res.render("campgrounds/show", { campground: foundCampground});
     }
     });
