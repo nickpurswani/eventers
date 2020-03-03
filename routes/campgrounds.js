@@ -8,7 +8,7 @@
 var options = {
   provider: 'google',
   httpAdapter: 'https',
-  apiKey: 'AIzaSyDcnDQ_dix63hKkocKlzSba7ReKPmUxy6k',
+  apiKey: 'api_key',
   formatter: null
 };
 
